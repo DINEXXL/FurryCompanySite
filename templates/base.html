@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title if title else company.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <h1>{{ company.name }}</h1>
+    <p>{{ company.slogan }}</p>
+    <nav>
+        <a href="{{ url_for('home') }}" class="{% if active_page == 'home' %}active{% endif %}">Головна</a>
+        <a href="{{ url_for('about') }}" class="{% if active_page == 'about' %}active{% endif %}">Про нас</a>
+        <a href="{{ url_for('services') }}" class="{% if active_page == 'services' %}active{% endif %}">Послуги</a>
+        <a href="{{ url_for('portfolio') }}" class="{% if active_page == 'portfolio' %}active{% endif %}">Портфоліо</a>
+        <a href="{{ url_for('contact') }}" class="{% if active_page == 'contacts' %}active{% endif %}">Контакти</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>{{ company.description }}</p>
+    <p>Email: {{ company.email }} | Телефон: {{ company.phone }} | Місто: {{ company.city }}</p>
+    <p>&copy; {{ company.name }} 2026</p>
+</footer>
+</body>
+</html>
